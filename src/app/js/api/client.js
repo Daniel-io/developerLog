@@ -14,6 +14,6 @@ export const request = async (url, options = {}) => {
     throw new Error(`Failed to fetch URL - ${url}`);
   }
 
-  const data = await response.json();
-  return data;
+  return response.json();
+
 }
