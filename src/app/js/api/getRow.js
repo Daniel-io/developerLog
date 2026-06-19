@@ -8,12 +8,11 @@ import { request } from './client.js'
 
 
 
+
 export const getRows = async () => {
+  const test = await request('http://localhost:3000/api/get/rows');
 
-  const rows = await request('http://localhost:3000/get/rows');
-  
-  console.log(rows);
-
+  console.log(test);
 }
 
 getRows();

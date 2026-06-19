@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import routes from "./routes/routes.js"
 
 dotenv.config();
 
@@ -23,38 +24,10 @@ app.get("/", (req, res) => {
 });
 
 
+app.use('/api', routes);
 
-//Get rows
-app.get("/get/rows", async (req, res) => {
 
-  try {
-    const token = process.env.TOKEN;
-    const tableID = process.env.TABLE_ID;
 
-    const url = `https://api.hubapi.com/cms/hubdb/2026-03/tables/${tableID}/rows`;
-
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    };
-
-    const response = await fetch(url, options);
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch rows from hubspot');
-    }
-
-    const data = await response.json();
-
-    res.json(data);   // ✅ THIS is what was missing
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
