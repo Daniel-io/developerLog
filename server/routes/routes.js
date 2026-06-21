@@ -1,5 +1,5 @@
 import express from "express";
-import { getTableRows } from "../services/hubdbTableRoutes.js";
+import { getTableRows, postTableRows } from "../services/hubdbTableRoutes.js";
 
 
 
@@ -23,7 +23,24 @@ router.get('/get/rows', async (req, res) => {
 })
 
 
+router.post('/post/rows', async (req, res) => {
 
+  try {
+    // console.log('REQUEST', req.method, req.headers, req.body);
+    console.log('REQUEST: METHOD', req.method);
+    console.log('REQUEST: HEADERS', req.headers);
+    console.log('REQUEST: BODY',  req.body);
+
+    const response = await postTableRows(req.body);
+    console.log(response);
+    res.json(response)
+
+  } catch(err) {
+    console.log(err);
+    res.status(500).json({ error: err.message  });
+  }
+
+})
 
 
 export default router;

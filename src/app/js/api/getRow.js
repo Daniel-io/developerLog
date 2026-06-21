@@ -10,9 +10,32 @@ import { request } from './client.js'
 
 
 export const getRows = async () => {
-  const test = await request('http://localhost:3000/api/get/rows');
+  const rows = await request('http://localhost:3000/api/get/rows');
 
-  console.log(test);
+  console.log(rows);
 }
 
-getRows();
+// getRows();
+
+
+export const postRows = async () => {
+  const payload = {
+    values: {
+      question: 'Question Four',
+      answer: 'Answer Four'
+    }
+  };
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  };
+
+  const response = await request('http://localhost:3000/api/post/rows', options);
+
+}
+
+postRows();
