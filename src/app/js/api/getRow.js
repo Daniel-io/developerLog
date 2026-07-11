@@ -15,7 +15,7 @@ export const getRows = async () => {
   console.log(rows);
 }
 
-// getRows();
+getRows();
 
 
 export const postRows = async () => {
@@ -35,7 +35,7 @@ export const postRows = async () => {
   };
 
   const response = await request('http://localhost:3000/api/post/rows', options);
-
+  console.log(response)
 }
 
 postRows();
