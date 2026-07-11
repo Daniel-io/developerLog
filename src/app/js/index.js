@@ -1,4 +1,5 @@
 import '../css/main.css'
+import { postRows } from './api/postRow.js';
 console.log(process.env.ENV);
 
 
@@ -8,8 +9,15 @@ flashCardEditor.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const formData = new FormData(flashCardEditor);
-  console.log(formData.get('question'));
-  console.log(formData.get('answer'));
+
+  const payload = {
+    values: {
+      question: formData.get('question'),
+      answer: formData.get('answer')
+    }
+  };
+
+  postRows(payload);
 
 });
 
