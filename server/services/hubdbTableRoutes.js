@@ -1,5 +1,6 @@
+import dotenv from "dotenv";
 
-
+dotenv.config();
 
 
 export const getTableRows = async () => {
@@ -21,15 +22,15 @@ const url = `https://api.hubapi.com/cms/hubdb/2026-03/tables/${tableID}/rows`
   }
 
   const data = await response.json();
-  console.log(data)
+  console.log(data);
   return data.results
 }
 
-
+ 
 
 
 export const postTableRows = async (payload = {}) => {
-  // Forward incoming payload to HubSpot using server-side token
+
   const token = process.env.TOKEN;
   if (!token) {
     throw new Error('Missing HUBSPOT_TOKEN in environment');
