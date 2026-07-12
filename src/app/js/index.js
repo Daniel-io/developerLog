@@ -13,7 +13,11 @@ flashCardEditor.addEventListener('submit', (event) => {
   const payload = {
     values: {
       question: formData.get('question'),
-      answer: formData.get('answer')
+      answer: formData.get('answer'),
+      tag: [
+        { name: 'general', type: 'option' },
+        { name: 'objects', type: 'option' }
+      ]
     }
   };
 
